@@ -1,5 +1,8 @@
-import app from './server'
+import app from "./server";
+import * as dotenv from "dotenv";
 
-app.listen(3001, ()=>{
-    console.log('hello on localhost')
-})
+dotenv.config();
+
+app.listen(3001, () => {
+  console.log("listening on localhost:3001");
+});
