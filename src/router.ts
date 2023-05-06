@@ -8,6 +8,13 @@ import {
   getProducts,
   updateProduct,
 } from "./handlers/product";
+import {
+  createUpdate,
+  deleteUpdate,
+  getOneUpdate,
+  getUpdates,
+  updateUpdate,
+} from "./handlers/update";
 
 const router = Router();
 
@@ -35,8 +42,8 @@ router.delete("/product/:id", deleteProduct);
  * Updates
  */
 
-router.get("/update", () => {});
-router.get("/update/:id", () => {});
+router.get("/update", getUpdates);
+router.get("/update/:id", getOneUpdate);
 router.post(
   "/update",
   body("title").optional(),
@@ -44,15 +51,15 @@ router.post(
   body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]).optional(),
   body("version").optional(),
 
-  () => {}
+  createUpdate
 );
 router.put(
   "/update/:id",
   body("title").isString(),
   body("body").isString(),
-  () => {}
+  updateUpdate
 );
-router.delete("/update/:id", () => {});
+router.delete("/update/:id", deleteUpdate);
 
 /**
  * Update Point
