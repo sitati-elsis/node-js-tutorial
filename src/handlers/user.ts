@@ -15,7 +15,7 @@ export const createUser = async (req, res) => {
 export const signIn = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
-      username: req.body.usernaname,
+      username: req.body.username,
     },
   });
 
