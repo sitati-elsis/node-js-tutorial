@@ -20,5 +20,17 @@ app.get("/", (req, res) => {
 app.use("/api", authenticate, router);
 app.post("/user", createUser);
 app.post("/signin", signIn);
+app.use((err, req, res, next) => {
+  if (err.type === "auth") {
+    res.status("401");
+    res.json({ message: "unauthorised" });
+  } else if (err.type === "input") {
+    res.status(400);
+    res.json({ message: "invalid input" });
+  } else {
+    res.status(500);
+    res.json({ message: "ooops... that's on us" });
+  }
+});
 
 export default app;
